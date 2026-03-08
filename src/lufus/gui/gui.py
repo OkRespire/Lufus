@@ -927,6 +927,11 @@ class lufus(QMainWindow):
         self.statusBar.showMessage("Ready", 0)
     
     def start_process(self):
+
+        # Bad blocks check
+        if states.check_bad == 0:
+            fo.checkdevicebadblock()
+
         states.DN = self.combo_device.currentData() or ""
         self.log_message(f"Start process triggered: image_option={states.image_option}, flash_mode={states.currentflash}, device={states.DN}")
         if states.image_option == 0: # WINDOWS
